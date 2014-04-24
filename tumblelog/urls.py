@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import include, patterns, url
 
 from tumblelog.feeds import PostFeed
 from tumblelog.views import PostDetailView, PostListView
