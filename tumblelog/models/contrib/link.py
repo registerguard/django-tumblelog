@@ -10,7 +10,7 @@ class Link(BasePostType):
     """
     Post type for a link.
     """
-    link = models.URLField(_('URL'), verify_exists=False)
+    link = models.URLField(_('URL'))
     link_text = models.CharField(_('Link Text'), max_length=256, null=True, \
         blank=True)
     caption = models.TextField(_('Caption'),
