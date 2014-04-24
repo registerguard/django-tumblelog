@@ -5,6 +5,10 @@ from django.contrib import admin
 from tumblelog.settings import EDIT_META, POST_TYPES, USE_TAGGIT
 from tumblelog.util import import_model
 
+import logging
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
+
 
 class PostTypeAdmin(admin.ModelAdmin):
 
@@ -85,6 +89,11 @@ class PostTypeAdmin(admin.ModelAdmin):
 for post_type in POST_TYPES:
     is_contrib = post_type.startswith('tumblelog.')
     model = import_model(post_type)
+
+    if not model:
+        logger.warning("skipped registration of post_type \"%s\". (couldn't get model)" % post_type)
+        continue
+
     admin_cls = type(
         PostTypeAdmin.__name__,
         (PostTypeAdmin,),
