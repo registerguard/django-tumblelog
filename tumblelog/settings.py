@@ -7,6 +7,8 @@ POST_TYPES = getattr(settings, 'TUMBLELOG_POST_TYPES', [
     'tumblelog.contrib.text.Text',
     'tumblelog.contrib.file.File',
     'tumblelog.contrib.photo.Image',
+    'tumblelog.Tweet',
+    'tumblelog.YouTube',
 ])
 POSTS_PER_PAGE = getattr(settings, 'TUMBLELOG_POSTS_PER_PAGE', 10)
 EDIT_META = getattr(settings, 'TUMBLELOG_EDIT_META', True)

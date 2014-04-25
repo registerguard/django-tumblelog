@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 import oembed
 from urllib2 import HTTPError
+import pytz
 
 from django.contrib.admin import helpers
 from django.contrib.auth.models import User
@@ -282,7 +283,7 @@ class BaseOembedPostType(BasePostType):
         super(BaseOembedPostType, self).__init__(*args, **kwargs)
         if self.pk:
             expiry = timedelta(seconds=self.cache_age) + self.date_updated
-            if datetime.now() > expiry:
+            if datetime.now().replace(tzinfo=pytz.utc) > expiry:
                 self.oembed_update()
 
     def oembed_consumer(self):
